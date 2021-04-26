@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0E6DF6C4-6394-4B22-8702-60CF5E8714FE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SplashServer\ATSplashSvr.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SplashTest\ATSplashTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ATSplashSvr">
+        <MSBuild Projects="SplashServer\ATSplashSvr.dproj"/>
+    </Target>
+    <Target Name="ATSplashSvr:Clean">
+        <MSBuild Projects="SplashServer\ATSplashSvr.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATSplashSvr:Make">
+        <MSBuild Projects="SplashServer\ATSplashSvr.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ATSplashTest">
+        <MSBuild Projects="SplashTest\ATSplashTest.dproj"/>
+    </Target>
+    <Target Name="ATSplashTest:Clean">
+        <MSBuild Projects="SplashTest\ATSplashTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATSplashTest:Make">
+        <MSBuild Projects="SplashTest\ATSplashTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ATSplashSvr;ATSplashTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ATSplashSvr:Clean;ATSplashTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ATSplashSvr:Make;ATSplashTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
